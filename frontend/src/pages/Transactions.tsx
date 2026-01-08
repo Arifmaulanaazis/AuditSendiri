@@ -34,7 +34,9 @@ export default function Transactions() {
     };
 
     const fetchTransactions = () => {
-        getTransactions().then(setTransactions);
+        getTransactions().then((data) => {
+            setTransactions(Array.isArray(data) ? data : []);
+        });
     };
 
     useEffect(() => {

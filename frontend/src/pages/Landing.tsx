@@ -13,7 +13,8 @@ export default function Landing() {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     useEffect(() => {
-        getTransactions().then((txs) => {
+        getTransactions().then((txsData) => {
+            const txs = Array.isArray(txsData) ? txsData : [];
             let income = 0;
             let expense = 0;
             const sortedTxs = [...txs].sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
