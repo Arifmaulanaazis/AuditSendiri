@@ -16,7 +16,10 @@ export default function Dashboard() {
     const [chartData, setChartData] = useState<any[]>([]);
 
     useEffect(() => {
-        Promise.all([getTransactions(), getUsers()]).then(([txs, users]) => {
+        Promise.all([getTransactions(), getUsers()]).then(([txsData, usersData]) => {
+            const txs = Array.isArray(txsData) ? txsData : [];
+            const users = Array.isArray(usersData) ? usersData : [];
+
             setTransactions(txs);
             setUserCount(users.length);
 
